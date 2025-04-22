@@ -1,19 +1,37 @@
 package entity;
 
 public class Book {
-    private int id;
+    private int bookId;
     private String title;
-    private boolean isBooked;
+    private String author;
+    private boolean isAvailable;
 
-    public Book(int id, String title) {
-        this.id = id;
+    public Book(int bookId, String title, String author) {
+        this.bookId = bookId;
         this.title = title;
-        this.isBooked = false;
+        this.author = author;
+        this.isAvailable = true;
     }
 
-    public int getId() { return id; }
-    public String getTitle() { return title; }
-    public boolean isBooked() { return isBooked; }
+    public int getBookId() {
+        return bookId;
+    }
 
-    public void setBooked(boolean booked) { isBooked = booked; }
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
+    }
+
+
 }
