@@ -3,21 +3,10 @@ package services;
 import entity.User;
 import repository.UserRepository;
 
-import java.util.List;
-
 public class UserService {
-    private UserRepository repository;
+    private UserRepository userRepository = new UserRepository();
 
-    public UserService(UserRepository repository) {
-        this.repository = repository;
-    }
-
-    public void addUser(User user) {
-        repository.addUser(user);
-    }
-
-    public List<User> viewAllUsers() {
-        return repository.getAllUsers();
+    public User login(String username, String password) {
+        return userRepository.login(username, password);
     }
 }
-

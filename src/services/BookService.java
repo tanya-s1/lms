@@ -2,22 +2,20 @@ package services;
 
 import entity.Book;
 import repository.BookRepository;
-
 import java.util.List;
 
 public class BookService {
-    private BookRepository repository;
+    private BookRepository bookRepository = new BookRepository();
 
-    public BookService(BookRepository repository) {
-        this.repository = repository;
+    public List<Book> getAllBooks() {
+        return bookRepository.getAllBooks();
     }
 
-    public void addBook(Book book) {
-        repository.addBook(book);
+    public Book getBookById(int id) {
+        return bookRepository.getBookById(id);
     }
 
-    public List<Book> viewAllBooks() {
-        return repository.getAllBooks();
+    public void updateBookAvailability(int id, boolean isAvailable) {
+        bookRepository.updateBookAvailability(id, isAvailable);
     }
 }
-
