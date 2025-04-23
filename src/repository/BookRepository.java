@@ -1,26 +1,39 @@
 package repository;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import entity.Book;
 
 public class BookRepository {
-    private List<Book> books = new ArrayList<>();
+    private Book[] books = new Book[100];
+    private int count = 0;
 
     public void addBook(Book book) {
-        books.add(book);
+        if (count < books.length) {
+            books[count++] = book;
+        }
     }
 
-    public List<Book> getAllBooks() {
-        return books;
+    public void deleteBook(String isbn) {
+        for (int i = 0; i < count; i++) {
+            if (books[i].getIsbn().equals(isbn)) {
+                books[i] = books[count - 1];
+                books[--count] = null;
+                break;
+            }
+        }
     }
 
-    public Book findBookById(int id) {
-        for (Book book : books) {
-            if (book.getBookId() == id) return book;
+    public Book[] getAllBooks() {
+        Book[] result = new Book[count];
+        System.arraycopy(books, 0, result, 0, count);
+        return result;
+    }
+
+    public Book searchBookByISBN(String isbn) {
+        for (int i = 0; i < count; i++) {
+            if (books[i].getIsbn().equals(isbn)) {
+                return books[i];
+            }
         }
         return null;
     }
-
 }

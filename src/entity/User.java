@@ -1,25 +1,13 @@
 package entity;
 
-public class User {
-    private int id;
-    private String name;
-    private String email;
+public abstract class User {
+    public String name;
+    public String id;
 
-    public User(int id, String name, String email) {
-        this.id = id;
+    public User(String name, String id) {
         this.name = name;
-        this.email = email;
+        this.id = id;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
+    public abstract void showUserInfo();
 }

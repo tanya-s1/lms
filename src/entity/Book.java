@@ -1,20 +1,16 @@
 package entity;
 
 public class Book {
-    private int bookId;
     private String title;
     private String author;
-    private boolean isAvailable;
+    private String isbn;
+    private String publisher;
 
-    public Book(int bookId, String title, String author) {
-        this.bookId = bookId;
+    public Book(String title, String author, String isbn, String publisher) {
         this.title = title;
         this.author = author;
-        this.isAvailable = true;
-    }
-
-    public int getBookId() {
-        return bookId;
+        this.isbn = isbn;
+        this.publisher = publisher;
     }
 
     public String getTitle() {
@@ -25,13 +21,16 @@ public class Book {
         return author;
     }
 
-    public boolean isAvailable() {
-        return isAvailable;
+    public String getIsbn() {
+        return isbn;
     }
 
-    public void setAvailable(boolean available) {
-        isAvailable = available;
+    public String getPublisher() {
+        return publisher;
     }
 
-
+    public void showDetails() {
+        System.out.println("Title: " + title + ", Author: " + author +
+                           ", ISBN: " + isbn + ", Publisher: " + publisher);
+    }
 }

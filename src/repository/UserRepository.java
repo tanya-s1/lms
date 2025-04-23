@@ -1,26 +1,39 @@
 package repository;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import entity.User;
 
 public class UserRepository {
-    private List<User> users = new ArrayList<>();
+    private User[] users = new User[100];
+    private int count = 0;
 
     public void addUser(User user) {
-        users.add(user);
+        if (count < users.length) {
+            users[count++] = user;
+        }
     }
 
-    public List<User> getAllUsers() {
-        return users;
-    }
-
-    public User findUserById(int id) {
-        for (User user : users) {
-            if (user.getId() == id) return user;
+    public User getUserById(String id) {
+        for (int i = 0; i < count; i++) {
+            if (users[i] != null && users[i].id.equals(id)) {
+                return users[i];
+            }
         }
         return null;
     }
 
+    public User[] getAllUsers() {
+        User[] result = new User[count];
+        System.arraycopy(users, 0, result, 0, count);
+        return result;
+    }
+
+    public void deleteUser(String id) {
+        for (int i = 0; i < count; i++) {
+            if (users[i] != null && users[i].id.equals(id)) {
+                users[i] = users[count - 1];
+                users[--count] = null;
+                break;
+            }
+        }
+    }
 }
