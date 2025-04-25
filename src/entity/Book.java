@@ -1,57 +1,45 @@
 package entity;
 
 public class Book {
-    private int id;
+    private String id;
     private String title;
-    private String author;
-    private boolean isAvailable;
+    private boolean isBorrowed;
+    private String borrowedBy;
 
-    public Book(int id, String title, String author, boolean isAvailable) {
+    public Book(String id, String title) {
         this.id = id;
         this.title = title;
-        this.author = author;
-        this.isAvailable = isAvailable;
+        this.isBorrowed = false;
+        this.borrowedBy = null;
     }
 
-    public int getId() {
-        return id;
+    public String getId() { return id; }
+    public String getTitle() { return title; }
+    public boolean isBorrowed() { return isBorrowed; }
+    public String getBorrowedBy() { return borrowedBy; }
+
+    public void borrow(String userId) {
+        if (!isBorrowed) {
+            isBorrowed = true;
+            borrowedBy = userId;
+            System.out.println("Book borrowed successfully.");
+        } else {
+            System.out.println("Book is already borrowed.");
+        }
     }
 
-//    public void setId(int id) {
-//        this.id = id;
-//    }
-
-    public String getTitle() {
-        return title;
-    }
-
-//    public void setTitle(String title) {
-//        this.title = title;
-//    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public boolean isAvailable() {
-        return isAvailable;
-    }
-
-    public void setAvailable(boolean isAvailable) {
-        this.isAvailable = isAvailable;
+    public void returnBook(String userId) {
+        if (isBorrowed && borrowedBy.equals(userId)) {
+            isBorrowed = false;
+            borrowedBy = null;
+            System.out.println("Book returned successfully.");
+        } else {
+            System.out.println("You can't return this book.");
+        }
     }
 
     @Override
     public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", isAvailable=" + isAvailable +
-                '}';
+        return id + " - " + title + (isBorrowed ? " (Borrowed by: " + borrowedBy + ")" : "");
     }
 }
