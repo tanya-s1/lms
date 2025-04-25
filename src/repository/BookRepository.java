@@ -7,9 +7,9 @@ public class BookRepository {
     private final List<Book> books = new ArrayList<>();
 
     public BookRepository() {
-        books.add(new Book("B001", "1984"));
-        books.add(new Book("B002", "The Alchemist"));
-        books.add(new Book("B003", "Harry Potter"));
+        books.add(new Book("B001", "1984", 400, 4.5));
+        books.add(new Book("B002", "The Alchemist", 450, 4.9));
+        books.add(new Book("B003", "Harry Potter", 350, 4));
     }
 
     public List<Book> getAllBooks() {
